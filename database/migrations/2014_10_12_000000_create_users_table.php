@@ -20,7 +20,19 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->unsignedBigInteger('id_rol')->nullable();
+            $table->unsignedBigInteger('id_sujeto')->nullable();
+            $table->unsignedBigInteger('estado')->nullable()
+                   ->comment('0: eliminado, 1: Actito, 2: Pendiente de activar.');
+            $table->date('fechaalta')->nullable();
+            $table->boolean('nuevo')->default(false);
+            $table->boolean('bloqueado')->default(false);
             $table->timestamps();
+            
+            //Relaciones
+            $table->foreign('id_rol')->references('id')->on('roles');
+            $table->foreign('id_sujeto')->references('id')->on('sujeto')
+                    ->onDelete('cascade');
         });
     }
 

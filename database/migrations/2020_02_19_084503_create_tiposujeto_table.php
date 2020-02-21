@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoyaltyTable extends Migration
+class CreateTiposujetoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateRoyaltyTable extends Migration
      */
     public function up()
     {
-        Schema::create('royalty', function (Blueprint $table) {
+        Schema::create('tiposujeto', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_campana')->nullable();
-            $table->double('precioqm', 8, 2)->nullable();
+            $table->string('codigo',300)->nullable();
+            $table->string('nombre',300)->nullable();
+            $table->string('descripcion',300)->nullable();
             $table->timestamps();
-            
-            //Relaciones
-            $table->foreign('id_campana')->references('id')->on('campana');
         });
     }
 
@@ -31,6 +29,6 @@ class CreateRoyaltyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('royalty');
+        Schema::dropIfExists('tiposujeto');
     }
 }

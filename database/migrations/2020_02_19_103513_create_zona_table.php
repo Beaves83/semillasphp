@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComunidadautonomaTable extends Migration
+class CreateZonaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateComunidadautonomaTable extends Migration
      */
     public function up()
     {
-        Schema::create('comunidadautonoma', function (Blueprint $table) {
-           $table->bigIncrements('id');
-           $table->unsignedBigInteger('id_pais')->nullable();
+        Schema::create('zona', function (Blueprint $table) {
+            $table->bigIncrements('id');
            $table->string('codigo',300)->nullable();
            $table->string('nombre',300)->nullable();
+           $table->string('descripcion',300)->nullable();
+           $table->boolean('tipocultivo')->default(false)
+                   ->comment('0: Secado, 1: Regadio');
            $table->timestamps();
-            
-           //Relaciones
-           $table->foreign('id_pais')->references('id')->on('pais');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateComunidadautonomaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comunidadautonoma');
+        Schema::dropIfExists('zona');
     }
 }

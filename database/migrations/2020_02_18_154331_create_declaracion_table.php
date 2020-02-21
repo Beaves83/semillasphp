@@ -32,7 +32,7 @@ class CreateDeclaracionTable extends Migration
             //Relaciones
             $table->foreign('id_campana')->references('id')->on('campana');
             $table->foreign('id_cliente')->references('id')->on('cliente');
-            $table->foreign('id_titular')->references('id')->on('titular');
+            $table->foreign('id_representante')->references('id')->on('titular');
         });
     }
 

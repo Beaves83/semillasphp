@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Role;
+use App\Sujeto;
 
 class User extends Authenticatable {
 
@@ -38,14 +39,6 @@ class User extends Authenticatable {
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * relación many-to-many entre el modelo User y el modelo Role
-     * @return type
-     */
-    public function roles() {
-        return $this->belongsToMany(Role::class)->withTimestamps();
-    }
-
     public function authorizeRoles($roles) {
         abort_unless($this->hasAnyRole($roles), 401);
         return true;
@@ -71,6 +64,16 @@ class User extends Authenticatable {
             return true;
         }
         return false;
+    }
+    
+    //Relaciones
+//    public function rol() {
+//        return $this->hasOne(Role::class);
+//    }
+    
+    public function sujeto()
+    {
+        return $this->belongsTo(Sujeto::class);
     }
 
 }

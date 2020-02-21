@@ -25,7 +25,7 @@ class CreateHistoricopagoTable extends Migration
             $table->timestamps();
             
             //Relaciones
-            $table->foreign('id_usuario')->references('id')->on('usuario');
+            $table->foreign('id_usuario')->references('id')->on('users');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClienteTable extends Migration
+class CreateTitularTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,18 @@ class CreateClienteTable extends Migration
      */
     public function up()
     {
-        Schema::create('cliente', function (Blueprint $table) {
+        Schema::create('titular', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_sujeto')->nullable();
-            $table->unsignedBigInteger('id_tipocliente')->nullable();
-            $table->unsignedBigInteger('id_entidadgestora')->nullable();
-            $table->unsignedBigInteger('id_tipoiva')->nullable();
             $table->string('codigo',300)->nullable();
+            $table->string('nombre',300)->nullable();
+            $table->string('descripcion',300)->nullable();
+            $table->unsignedBigInteger('tipo')->nullable();
             $table->timestamps();
             
             //Relaciones
             $table->foreign('id_sujeto')->references('id')->on('sujeto')
                     ->onDelete('cascade');
-            $table->foreign('id_tipocliente')->references('id')->on('tipocliente');
-            $table->foreign('id_entidadgestora')->references('id')->on('entidadgestora');
-            $table->foreign('id_tipoiva')->references('id')->on('tipoiva');
         });
     }
 
@@ -38,6 +35,6 @@ class CreateClienteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cliente');
+        Schema::dropIfExists('titular');
     }
 }

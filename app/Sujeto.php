@@ -1,22 +1,18 @@
 <?php
 
-use Illuminate\Database\Seeder;
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Role;
 use App\Sujeto;
 
-class UserPruebasSeeder extends Seeder
+class Sujeto extends Model
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+     //Relaciones
+    public function usuario()
     {
-        
        //Creamos usuario con el perfil de Administrador
-       $usuario = new User();
+       $sujeto = new Sujeto();
        $usuario->name = 'Admin1';
        $usuario->email = 'admin@email.es';
        $usuario->password = Hash::make('admin@email.es');     
